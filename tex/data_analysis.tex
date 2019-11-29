@@ -1,6 +1,6 @@
 
 \documentclass{jarticle}
-\usepackage[truedimen,mag=900]{geometry}%フォントサイズを指定. 1000が10pt
+\usepackage[truedimen,mag=850]{geometry}%フォントサイズを指定. 1000が10pt
 \usepackage{geometry}
 %\usepackage[dvipdfmx]{graphicx}
 \usepackage{amssymb}%白抜き文字(mathbb)
@@ -52,9 +52,11 @@
 \hypertarget{header-n2003}{%
 \section{テーマ}\label{header-n2003}}
 
-主成分分析で天候に大きく寄与する成分を見つける
+\begin{enumerate}
+\item 主成分分析で天候に大きく寄与する成分を見つける
+\item サポートベクターマシーンで新潟のお米の収量とその気候の関連性を調べる
+\end{enumerate}
 
-サポートベクターマシーンで新潟のお米の収量とその気候の関連性を調べる
 
 \hypertarget{header-n2005}{%
 \section{原理}\label{header-n2005}}
@@ -300,7 +302,7 @@ p次元実数値関数を$f(w_1, \cdots w_p) = f(\bm{w})$とする. この目的
 
 \begin{figure}[H]
 \centering
-\includegraphics[keepaspectratio, scale=0.56]
+\includegraphics[keepaspectratio, scale=0.75]
 {pca_plot.pdf}
 \caption{PCAによる分析結果}
 \label{pca}
@@ -310,7 +312,7 @@ p次元実数値関数を$f(w_1, \cdots w_p) = f(\bm{w})$とする. この目的
 
 \begin{figure}[H]
 \centering
-\includegraphics[keepaspectratio, scale=0.56]
+\includegraphics[keepaspectratio, scale=0.75]
 {svm_plot.pdf}
 \caption{SVMによる分析結果}
 \label{svm}
@@ -379,13 +381,22 @@ month&PC1&PC2 &SVM\_score\\ \hline
 %水を引くわけだから, 晴れちゃうと干からびちゃうのかな？
 
 \section{次への課題}
-4月5月以外のSVMによる分析が使い物にならなかった. 次元拡張をすれば分離できたかもしれない.
-
+\begin{itemize}
+\item 4月5月以外のSVMによる分析が使い物にならなかった. 次元拡張をすれば分離できたかもしれない. 
+\item 他地域の気候を調べ, 稲作に最適な地域を洗い出したかった.
+\item 他の班が行っていたように, 前処理の段階で箱ひげ図などで可視化し, ある程度の仮説を用意すべきだった.
+\item 12月分行うと, 結果が非常に見づらいものになってしまった. 季節ごと(3ヶ月)で区切るべきだった.
+\end{itemize}
 
 %ある程度仮説を立てるべきだった.
 \begin{thebibliography}{9}
   %\bibitem{1} 並木雅俊 「大学生のための物理入門」P.95, 98 (2010).
 %  \bibitem{1}\href{https://re-imagej.blogspot.com/2015/09/252.html}{Re - ImageJで学ぶ : 第25回 2値化の応用 医用画像の特徴量解析 フラクタル解析で学ぶ}\url{https://re-imagej.blogspot.com/2015/09/252.html}
   \bibitem{1} 小西貞則「多変量解析入門——線形から非線形へ」p.193$\sim$203
+  \bibitem{2}\href{  https://www.kankou-shimane.com/shinwa/kiso/fudoki/index.html}{出雲国風土記}\url{  https://www.kankou-shimane.com/shinwa/kiso/fudoki/index.html}
+ \bibitem{3}\href{ http://www.jmmp.jp/difference.html }{特産品と名産品の違い}\url{http://www.jmmp.jp/difference.html}
+ \bibitem{4}\href{ http://ytnk.jp/tanadakai/kometukuri.html}{お米ができるまで}\url{http://ytnk.jp/tanadakai/kometukuri.html}
+ \bibitem{5}\href{https://www.nihonbunka.or.jp/tanbo }{田んぼ学校}\url{https://www.nihonbunka.or.jp/tanbo}
+
 \end{thebibliography}
 \end{document}
