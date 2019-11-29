@@ -50,21 +50,17 @@
 その中で古くから親しまれている日本人の主食, 米は日本各地で生産されており, 特に生産量1位である新潟県は古くからの日本で有数のお米の生産地である. そこで我々は新潟県とその気候を調べ, どのような要因が生産量に影響を与えているかを調べ, 天候から豊作不作を判定したいと考えた. また, その結果から他の土地に稲作の可能性を見出せると考える.
 
 \hypertarget{header-n2003}{%
-\section{テーマ}\label{header-n2003}}
+\section{目的}\label{header-n2003}}
 
 \begin{enumerate}
-\item 主成分分析で天候に大きく寄与する成分を見つける
-\item サポートベクターマシーンで新潟のお米の収量とその気候の関連性を調べる
+\item 主成分分析で天候に大きく寄与する成分を見つける.
+\item サポートベクターマシーンで新潟のお米の収量とその気候の関連性を調べる.
 \end{enumerate}
 
 
 \hypertarget{header-n2005}{%
 \section{原理}\label{header-n2005}}
 
-%\hypertarget{header-n2006}{%
-%\subsubsection{主成分分析}\label{header-n2006}}
-
-%書くかぁ...
 
 \hypertarget{header-n2009}{%
 \subsection{サポートベクターマシン}\label{header-n2009}}
@@ -250,7 +246,7 @@ p次元実数値関数を$f(w_1, \cdots w_p) = f(\bm{w})$とする. この目的
 使用したデータの種類と出典は表\ref{data}の通りである.
 
 \begin{table}[H]
-\caption{データ}
+\caption{使用したデータの種類と出典}
 \begin{tabular}{|c|c|c|c|} \hline
 &データの種類&出典\\ \hline
 米の収量&10aあたりの収量 (t)&eStat\\ \hline
@@ -304,7 +300,7 @@ p次元実数値関数を$f(w_1, \cdots w_p) = f(\bm{w})$とする. この目的
 \centering
 \includegraphics[keepaspectratio, scale=0.75]
 {pca_plot.pdf}
-\caption{PCAによる分析結果}
+\caption{主成分分析による分析結果}
 \label{pca}
 \end{figure}
 
@@ -314,7 +310,7 @@ p次元実数値関数を$f(w_1, \cdots w_p) = f(\bm{w})$とする. この目的
 \centering
 \includegraphics[keepaspectratio, scale=0.75]
 {svm_plot.pdf}
-\caption{SVMによる分析結果}
+\caption{サポートベクターマシンによる分析結果}
 \label{svm}
 \end{figure}
 
@@ -358,7 +354,7 @@ month&PC1&PC2 &SVM\_score\\ \hline
 
 \hypertarget{header-n2056}{%
 \section{考察}\label{header-n2056}}
-
+以下, 第一主成分をPC!, 第二主成分をPC2, サポートベクターマシンをSVMと略す.
 第二主成分の寄与率が高い月はSVMの正答率が高い. 特に5月はSVMの正答率が高い. それら以外はあてになる分析結果とはいえない. ここでは表\ref{score}からSVMの正答率が$0.7$を超えている4月と5月について考える. 
 4月は図\ref{svm}からPC1の影響はほぼ関係がなく, PC2の影響のみを考える. 図\ref{pca}のPCAの固有ベクトルと図\ref{svm}のSVMの結果から, 日照時間が長ければ豊作になり, 降水量は関係がない.
 
@@ -382,10 +378,10 @@ month&PC1&PC2 &SVM\_score\\ \hline
 
 \section{次への課題}
 \begin{itemize}
-\item 4月5月以外のSVMによる分析が使い物にならなかった. 次元拡張をすれば分離できたかもしれない. 
+\item 4月, 5月以外のSVMによる分析が使い物にならなかった. 次元拡張をすれば分離できたかもしれない. 
 \item 他地域の気候を調べ, 稲作に最適な地域を洗い出したかった.
 \item 他の班が行っていたように, 前処理の段階で箱ひげ図などで可視化し, ある程度の仮説を用意すべきだった.
-\item 12月分行うと, 結果が非常に見づらいものになってしまった. 季節ごと(3ヶ月)で区切るべきだった.
+\item 12ヶ月分の分析を行うと, 結果が非常に見づらいものになってしまった. 季節ごと(3ヶ月)で区切るべきだった.
 \end{itemize}
 
 %ある程度仮説を立てるべきだった.
