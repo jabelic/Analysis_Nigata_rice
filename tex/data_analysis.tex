@@ -1,0 +1,284 @@
+
+\documentclass{jarticle}
+\usepackage{geometry}
+%\usepackage[dvipdfmx]{graphicx}
+\usepackage{amssymb}%白抜き文字(mathbb)
+\usepackage[dvipdfmx]{hyperref,graphicx}
+\usepackage{pxrubrica}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{ascmac}
+\usepackage{comment}
+\usepackage{url}
+\usepackage{siunitx}
+\usepackage{here}
+\usepackage{listings}
+\lstset{%
+  language={Python},
+  basicstyle={\small},%
+  identifierstyle={\small},%
+  commentstyle={\small\itshape\color[rgb]{0,0.5,0}},%
+  keywordstyle={\small\bfseries\color[rgb]{0,0,1}},%
+  ndkeywordstyle={\small},%
+  stringstyle={\small\ttfamily\color[rgb]{1,0,1}},
+  frame={tb},
+  breaklines=true,
+  columns=[l]{fullflexible},%
+  numbers=left,%
+  xrightmargin=0zw,%
+  xleftmargin=3zw,%
+  numberstyle={\scriptsize},%
+  stepnumber=1,
+  numbersep=1zw,%
+  lineskip=-0.5ex%
+}
+
+\title{実験データ解析演習　最終レポート\\ 新潟県のお米の収量と天候の関連性について}
+\author{2610180082 2年1組 No. 39  水野 響\ \\ 共同メンバー：藤浪真尋, 山崎大知\\グループ番号：1}
+\date{\today}
+\begin{document}
+\maketitle
+\tableofcontents%目次を表示
+\newpage
+
+
+\section{研究背景}
+一般的に, 農業はその土地の気候と密接に関係していることが知られており, その歴史は古い. 713年の諸国への風土記の編纂命令には「産物」の記載が含まれており, その頃には既に特産品に相当する概念が既にあったことがうかがえる. しかし現在, 気候変動や異常気象などで伝統的にその土地で育てられている農作物が不作となってしまうことや, 育てる農作物が変化している現状がある.
+
+その中で古くから親しまれている日本人の主食, 米は日本各地で生産されており, 特に生産量1位である新潟県は日本で有数のお米の生産地である. そこで我々は新潟県とその気候を調べ, どのような要因が生産量に影響を与えているかを調べ, 天候から豊作不作を判定したいと考えた. また, その結果から他の土地に稲作の可能性を見出せると考える.
+
+\hypertarget{header-n2003}{%
+\section{テーマ}\label{header-n2003}}
+
+主成分分析で天候に大きく寄与する成分を見つける
+
+サポートベクターマシーンで新潟のお米の収量とその気候の関連性を調べる
+
+\hypertarget{header-n2005}{%
+\section{原理}\label{header-n2005}}
+
+%\hypertarget{header-n2006}{%
+%\subsubsection{主成分分析}\label{header-n2006}}
+
+%書くかぁ...
+
+\hypertarget{header-n2009}{%
+\subsection{サポートベクターマシン}\label{header-n2009}}
+
+サポートベクターマシンでは,
+自明に2群に線形分離可能である学習データを用いてその2群を最もよく分離する関数を考える.
+個体あるいは対象を特徴づけるp個の変数
+\(\bm{x} = (x_1, x_2, \cdots., x_p)^T\) に関して観測されたn個の学習データ$\bm{x}_1,\bm{x}_2,\cdots,\bm{x}_n$とする.
+これらの学習データは2つの群$G_1, G_2$のどちらに属するものであるかが既に分かっているとする. 
+ここで2群を分離する超平面
+\[\bm{w}^T\bm{x} + b = 0\]
+を考える. ここで, $\bm{w} = (w_1, w_2, \cdots, w_p)^T$とする.
+線形分離可能な学習データに対しては分離超平面によってデータは$\bm{w}^T\bm{x}_i + b  > 0$または$\bm{w}^T\bm{x}_i + b < 0$のどちらかを満たす.
+ここで($ \bm{w}^T\bm{x} + b > 0 : G_1,\ \bm{w}^T\bm{x} + b < 0 : G_2$)すなわち
+\[\bm{x}_i \in G_1,\ \leftrightarrow  \bm{w}^T\bm{x} + b > 0,\ \ \ \bm{x}_i \in G_2,\ \leftrightarrow  \bm{w}^T\bm{x} + b < 0,\]
+
+
+\begin{equation}
+y = 
+     \left\{
+     \begin{aligned}
+        1\ \ (\bm{x}_i\mbox{が} G_1 \mbox{に属するとき}) \\
+        -1\ \ (\bm{x}_i\mbox{が} G_2 \mbox{に属するとき})\\
+     \end{aligned}
+     \right.
+ \end{equation}
+とすると 
+
+全てのデータに対して
+\[y_i(\bm{w}^T\bm{x}_i + b) > 0\]
+が成り立つ.
+ 
+ では, 線形分離可能な学習データに対してどのように超平面を構成すれば良いのだろうか.
+ 
+このための基準として用いるのが距離である. 一般にp次元データ\(\bm{x} = (x_1, x_2, \cdots., x_p)^T\)から超平面$ \bm{w}^T\bm{x} + b = 0$上への距離は
+
+ 
+ \[ d_i = \frac{|w_1x_{i1} + w_2x_{i2} + \cdots + w_px_{ip} + b|}{\sqrt{w_1^2 +\cdots+ w_p^2}} = \frac{|\bm{w}^T\bm{x}_i + b|}{||\bm{w}||}\]
+ 
+ である.
+ 
+ 
+\paragraph{マージン最大化}
+ 
+ 線形分離可能な場合は二軍を分離する１つの超平面$H$とそれを中間に挟む形で2つの超平面$ H_+, H_-$が存在する.
+ここで, 両端の超平面には少なくとも１つのデータが存在し, その間にはデータは存在しないとする. サポートベクターマシーンでは, この$ H_+$と$ H_-$の中央にある$H$を最適な分離超平面と定義する.
+ 
+ 
+ このため, 超平面$H_+$上のデータ$\bm{x}_+$あるいは$H_-$上のデータ$\bm{x}_-$から超平面$H$への距離
+\[d = \frac{\bm{w}^T\bm{x}_+ + b}{||\bm{w}||} = \frac{-(\bm{w}^T\bm{x}_- + b)}{||\bm{w}||} \]
+
+をマージンと呼び, 2群を最もうまく分類する問題を, このマージンを最大とする分離超平面を求める問題へと帰着させる. 
+ 
+ つまり
+
+\[\max_{\bm{w}, b} d\ \   s.t.\ \   \frac{y_i(\bm{w}^T\bm{x}_i + b)}{||\bm{w}||}\geq d \]
+
+となる.
+しかし, このマージン最大化問題の解を求めることは計算上難しいことから, 2次計画題とよばれる最適化問題ヘと式を変形する.
+
+一般に超平面$  \bm{w}^T\bm{x} + b = 0$に任意の実数 $ \bm{r>0}$ をかけて, 係数のスケールを変えたとしても超平面は不変である.
+ 
+ ここでマージン最大化の条件$\frac{|\bm{w}^T\bm{x}_i + b|}{||\bm{w}||}\geq d$に注目する．この両辺をマージンdで割ると, 
+ \[y_i\left(\frac{\bm{w}^T\bm{x}_i}{d||\bm{w}||}+\frac{b}{d||\bm{w}||}\right)\geq 1\]
+となる.
+ 
+ 
+そこで, $r=1/d||\bm{w}||$とおいて係数のスケールを変えると, 上の式は
+\[y_i(\bm{w}^{*\bm{T}}\bm{x_i}+b^*)\geq 1\]
+というようになる.
+ただし, 
+\[\bm{w}^* = \frac{1}{d||\bm{w}||}\bm{w},\ \ \ \ \  b^* = \frac{1}{d||\bm{w}||}b\]
+とおく.
+
+ これは特に超平面$H_+,\ H_-$に対しては等号が成立する.
+ゆえに, 等号が成立する超平面上のデータから分離超平面$H$上への距離, すなわちマージン$d^*$は
+\[d^*=\frac{y_i(\bm{w}^{*T}\bm{x}_i+b^*)}{||\bm{w^*}||}=\frac{1}{||\bm{w}^*||}\]
+となることがわかる.
+
+
+以上のことから, スケール変換した分離超平面$\bm{w}^T\bm{x}_i+b^*=0$に対しては, 線形分離可能なすべての学習データは$y_i(\bm{w}^T\bm{x}_i+b^*)\geq 1$を満たしており, それゆえマージン最大化問題はこの不等式制約条件のもとでマージン$d^*=1/||\bm{w}^*||$を最大にする$\bm{w}^*$と$b^*$を求める問題に帰着する.
+
+ また, マージン$d^*$の最大化は分母の重みベクトルのノルムの2乗$||\bm{w}||^{*2}$の最小化と同等であることから, マージン最大化問題は次のように定式化することができる.
+ただし, $d^*,\ \bm{w}^*,\ b^*$はすべて, $d,\ \bm{w},\ b$と表記する.
+
+\paragraph{マージン最大化問題}
+
+\[\min_{\bm{w}}\frac{1}{2}||\bm{w}||^2,\ \ \ \ \ \ \mbox{制約条件}\ \ y_i(\bm{w}^{T}\bm{x}_i+b)\geq 1,\ \ \ \  i=1,2,\cdots,\ n\]
+
+
+
+
+ 
+\hypertarget{header-n2013}{%
+\section{データ}\label{header-n2013}}
+使用したデータの種類と出典は表\ref{data}の通りである.
+
+\begin{table}[H]
+\caption{データ}
+\begin{tabular}{|c|c|c|c|} \hline
+&データの種類&出典\\ \hline
+米の収量&10aあたりの収量 (t)&eStat\\ \hline
+天気&日照時間, 気温, 湿度, 降水量, 風速, 雲量&気象庁\\ \hline
+\end{tabular}
+\centering
+\label{data}
+\end{table}
+
+
+\hypertarget{header-n2026}{%
+\section{操作}\label{header-n2026}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  6次元の気候データを主成分分析により2次元に圧縮した.
+\item
+  収量を480 (t)以上の年を豊作とし, ラベルを豊作の年を1,
+  不作の年を0としてラベル付けをした.
+\item
+  主成分分析した2次元データと固有ベクトルを月ごとにプロットした.
+\item
+  第一主成分と第二主成分の配列を用意した.
+\item
+  主成分をtrainデータとtestデータを７：３の割合で分割した.
+\item
+  サポートベクターマシーンを学習させた.
+\item
+  サポートベクターマシーンの正答率を求めた.
+\item
+  横軸を第一主成分, 縦軸を第二主成分としてデータをプロットし,
+  サポートベクターマシーンの分類結果を可視化した.
+\item
+  以上を12ヶ月分同様に行った.
+\item
+  result配列を用意し,
+  月ごとの第一主成分と第二主成分とサポートベクターマシーンの正答率を格納した.
+\end{enumerate}
+
+\hypertarget{header-n2048}{%
+\section{結果}\label{header-n2048}}
+
+操作3による散布図が図\ref{pca}である. 操作8による散布図が図\ref{svm}である.
+%小さくて見えないかもしれないが, rainfallは降水量, sunlightは日照時間を示している.(他も書く？)
+
+月ごとの第一主成分と第二主成分とサポートベクターマシーンの正答率が表\ref{score}である.
+オレンジ色の方が豊作で, 青色の部分が不作を表している.
+
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio, scale=0.56]
+{pca_plot.pdf}
+\caption{PCAによる分析結果}
+\label{pca}
+\end{figure}
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio, scale=0.56]
+{svm_plot.pdf}
+\caption{SVMによる分析結果}
+\label{svm}
+\end{figure}
+
+%\begin{lstlisting}[caption=score, label=score]
+%           PC1       PC2  SVM_score
+% month                               
+% 1      　0.948290    0.049088   0.529412
+% 2      　0.841302    0.151448   0.352941
+% 3      　0.726571    0.266117   0.588235
+% 4      　0.707992    0.285218   0.705882
+% 5      　0.718615    0.278711   0.882353
+% 6      　0.835200    0.163343   0.529412
+% 7      　0.907491    0.091873   0.588235
+% 8      　0.902660    0.096692   0.352941
+% 9      　0.906668    0.092054   0.3520961
+% 10     　0.867753    0.129710   0.235294
+% 11     　0.953945    0.043966   0.470588
+% 12     　0.965803    0.031950   0.5882
+%\end{lstlisting}
+\begin{table}[H]
+\caption{月ごとの固有ベクトルとSVM正答率}
+\begin{tabular}{|c|c|c|c|} \hline
+month&PC1&PC2 &SVM\_score\\ \hline
+ 1&0.948290&0.049088&0.529412\\ \hline
+ 2&0.841302&0.151448&0.352941\\ \hline
+ 3&0.726571&0.266117&0.588235\\ \hline
+ 4&0.707992 &0.285218&0.705882\\ \hline
+ 5&0.718615&0.278711&0.882353\\ \hline
+ 6&0.835200&0.163343&0.529412\\ \hline
+ 7&0.907491&0.091873&0.588235\\ \hline
+ 8&0.902660&0.096692&0.352941\\ \hline
+ 9&0.906668&0.092054&0.3520961\\ \hline
+ 10&0.867753&0.129710&0.235294\\ \hline
+ 11&0.953945&0.043966&0.470588\\ \hline
+ 12&0.965803&0.031950&0.588200\\ \hline
+\end{tabular}
+\centering
+\label{score}
+\end{table}
+
+
+\hypertarget{header-n2056}{%
+\section{考察}\label{header-n2056}}
+
+第二主成分の寄与率が高い月はSVMの正答率が高い. 特に5月はSVMの正答率が高い. それら以外はあてになる分析結果とはいえない.
+%だからとりあえず4月5月のみを考える
+%4月はPC2の影響のみを考えればよくて, PC1は関係ない. つまり, PCAの固有ベクトルとSVMの結果から, 日照時間が長ければ豊作になり, 降水量は関係ない
+%5月は4月同様に, 降水量は関係なくて, 日照時間は短い方が豊作になる.
+%4,5月ってどういう時期だ？？稲植えてる？
+%4月は種籾を用意して発芽させてタネを育苗箱に蒔く. その後, ハウス内で苗を育てる. 
+%5月は田おこし. しろかき(水を引き入れてトラクターでよく混ぜる). そして田植え.
+%
+
+\section{次への課題}
+
+データをもっとよく観察して, ある程度仮説を立てるべきだった. 
+
+\end{document}

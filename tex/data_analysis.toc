@@ -1,0 +1,11 @@
+\contentsline {section}{\numberline {1}研究背景}{2}{section.1}
+\contentsline {section}{\numberline {2}テーマ}{2}{section.2}
+\contentsline {section}{\numberline {3}原理}{2}{section.3}
+\contentsline {subsection}{\numberline {3.1}サポートベクターマシン}{2}{subsection.3.1}
+\contentsline {paragraph}{マージン最大化}{3}{section*.2}
+\contentsline {paragraph}{マージン最大化問題}{4}{section*.3}
+\contentsline {section}{\numberline {4}データ}{4}{section.4}
+\contentsline {section}{\numberline {5}操作}{4}{section.5}
+\contentsline {section}{\numberline {6}結果}{5}{section.6}
+\contentsline {section}{\numberline {7}考察}{6}{section.7}
+\contentsline {section}{\numberline {8}次への課題}{7}{section.8}
