@@ -3,7 +3,7 @@
 \contentsline {section}{\numberline {3}原理}{2}{section.3}
 \contentsline {subsection}{\numberline {3.1}サポートベクターマシン}{2}{subsection.3.1}
 \contentsline {paragraph}{マージン最大化}{3}{section*.2}
-\contentsline {paragraph}{マージン最大化問題}{4}{section*.3}
+\contentsline {paragraph}{主問題：マージン最大化問題}{4}{section*.3}
 \contentsline {section}{\numberline {4}データ}{4}{section.4}
 \contentsline {section}{\numberline {5}操作}{4}{section.5}
 \contentsline {section}{\numberline {6}結果}{5}{section.6}

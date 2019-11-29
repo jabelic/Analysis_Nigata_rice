@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.7-160201-2.6 (utf8.euc) (TeX Live 2016) (preloaded format=platex 2017.1.30)  29 NOV 2019 16:57
+This is e-pTeX, Version 3.14159265-p3.7-160201-2.6 (utf8.euc) (TeX Live 2016) (preloaded format=platex 2017.1.30)  29 NOV 2019 19:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -766,15 +766,15 @@ File: pca_plot.pdf Graphic file (type pdf)
 File: svm_plot.pdf Graphic file (type pdf)
  <svm_plot.pdf> [5]
 [6]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 290.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 297.
  [7]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 290.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 297.
  (./data_analysis.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 290.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 290.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 297.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 297.
 Package rerunfilecheck Info: File `data_analysis.out' has not changed.
 (rerunfilecheck)             Checksum: 03A3DFC34E040ECB7EC907E6F8793326;431.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 290.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 297.
  ) 
 Here is how much of TeX's memory you used:
  17195 strings out of 493693
@@ -783,6 +783,6 @@ Here is how much of TeX's memory you used:
  20593 multiletter control sequences out of 15000+600000
  25687 words of font info for 101 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 34i,8n,42p,10381b,803s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 34i,8n,42p,10381b,805s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on data_analysis.dvi (7 pages, 23504 bytes).
+Output written on data_analysis.dvi (7 pages, 25052 bytes).
